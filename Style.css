@@ -8,27 +8,28 @@
 }
 
 label:nth-of-type(1) {
-  animation-delay: 0s;
+  animation-delay: 0.5;
 }
 label:nth-of-type(2) {
-  animation-delay: -0.5s;
+  animation-delay: 3s;
 }
 label:nth-of-type(3) {
-  animation-delay: -1s;
+  animation-delay: 1s;
 }
 label:nth-of-type(4) {
-  animation-delay: -1.5s;
+  animation-delay: 1.5s;
 }
 label:nth-of-type(5) {
-  animation-delay: -2s;
+  animation-delay: 2s;
 }
 label:nth-of-type(6) {
-  animation-delay: -2.5s;
+  animation-delay: 3.0s;
 } 
 
 /* --------------------- Dado 1 --------------------- */
-#d1:checked ~ main label:nth-of-type(12) {order: 4;}
+#d1:checked ~ main label:nth-of-type(1) {order: 13;}
 #d1:checked ~ main label:nth-of-type(2) {order: 14;}
+#d1:checked ~ main label:nth-of-type(12) {order: 4;}
 #d1:checked ~ main label:nth-of-type(8) {order: 1;}
 #d1:checked ~ main label:nth-of-type(15) {order: 6;}
 #d1:checked ~ main label:nth-of-type(10) {order: 9;}
@@ -42,7 +43,7 @@ label:nth-of-type(6) {
 #d1:checked ~ main label:nth-of-type(7) {order: 16;}
 #d1:checked ~ main label:nth-of-type(4) {order: 3;}
 #d1:checked ~ main label:nth-of-type(5) {order: 7;}
-#d1:checked ~ main label:nth-of-type(1) {order: 13;}
+
 /* --------------------- Dado 2 --------------------- */
 #d2:checked ~ main label:nth-of-type(8) {order: 4;}
 #d2:checked ~ main label:nth-of-type(11) {order: 9;}
@@ -149,7 +150,7 @@ label:nth-of-type(6) {
   display: flex;
 }
 
-/* tapar label-dice cuando clickeado */
+/* tapar star game cuando clickeado */
 #d1:checked ~ .label-dice,
 #d2:checked ~ .label-dice,
 #d3:checked ~ .label-dice,
@@ -182,7 +183,6 @@ input[type="radio"] {
 
 body {
   font-family: "Roboto", sans-serif;
-  background-color: aquamarine;
   background-image: url(imagenes/fondo.jpg);
   background-size: cover;
   height: 100vh;
@@ -194,7 +194,6 @@ body {
 
 main {
   max-width: min-content;
-  display: none;
   padding: 0;
   margin: 0;
   grid-template-columns: repeat(4, 1fr);
@@ -204,12 +203,12 @@ main {
 
 .flip-card {
   position: relative;
-  color: white;
   width: 150px;
   height: 150px;
   border-radius: 5px;
   cursor: pointer;
   background-color: transparent;
+  transform-style: preserve-3d;
   overflow: hidden;
   z-index: 1;
   border: none;
@@ -222,17 +221,7 @@ main {
   height: 100%;
   transition: transform 0.8s;
   transform-style: preserve-3d;
-  background: rgb(2, 0, 36);
   background-color: transparent;
-  /* background: linear-gradient(
-    36deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(37, 37, 37, 1) 0%,
-    rgba(14, 14, 14, 1) 100%
-  ); */
-  /* border: 5px solid #fff; */
-  box-shadow: -3px 0 10px rgba(0, 0, 0, 0.3), -4px 0 10px rgba(0, 0, 0, 0.2),
-    -5px 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .flip-card-back,
@@ -242,6 +231,7 @@ main {
   height: 100%;
   overflow: hidden;
   background-color: transparent;
+  backface-visibility: hidden;
 }
 
 .flip-card-back img,
@@ -249,14 +239,16 @@ main {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  /* el tamaño de la imagen en el contenedor */
+  transform: translate(-50%, -50%); 
   max-height: 100%;
   height: auto;
-  overflow: hidden;
+
 }
 
 .flip-card-back {
-  transform: rotateY(180deg);
+  background-color: transparent;
+  transform: rotatey(180deg);
   backface-visibility: hidden;
 }
 
@@ -1220,7 +1212,7 @@ main {
     height: 100px;
   }
   .flip-card-inner {
-    border: 3px solid #fff;
+    border: 3px solid #ffffff00;
   }
   .flip-card-back img,
   .flip-card-front img {
@@ -1247,7 +1239,7 @@ main {
     height: 80px;
   }
   .flip-card-inner {
-    border: 2px solid #fff;
+    border: 2px solid #ffffff00;
   }
   .flip-card-back img,
   .flip-card-front img {
@@ -1263,11 +1255,5 @@ main {
   .you-won-card button {
     padding: 0.5rem 0.8rem;
   }
-}
-
-/* si #card-1:checked ~ #card-2:checked activar alguna propiedad que se pueda capturar desde css en #pair-1 */
-
-#card-1:checked ~ #card-2:checked ~ #pair-1 {
-  /* change the value to 11 */
 }
 
